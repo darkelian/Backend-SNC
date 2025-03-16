@@ -1,0 +1,60 @@
+version: "3.8"
+
+services:
+  # Base de datos única para ambas aplicaciones (Django y Keycloak)
+  db:
+    image: postgres
+    container_name: igac_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init-scripts:/docker-entrypoint-initdb.d
+    environment:
+      - POSTGRES_USER=snc_parent
+      - POSTGRES_PASSWORD=snc_parent
+    ports:
+      - "15433:5432"
+    networks:
+      - snc-net
+    restart: always
+
+  # Aplicación Django conectada a la base de datos 'snc_test'
+  web:
+    build: .
+    env_file: .env
+    command: python manage.py runserver 0.0.0.0:8000 --settings=snc_app.settings.dev
+    volumes:
+      - .:/code
+    ports:
+      - "9000:8000"
+      - "3400:3000"
+    networks:
+      - snc-net
+    depends_on:
+      - db
+
+  # Keycloak usando la misma instancia de PostgreSQL pero con otra base de datos
+  keycloak:
+    image: quay.io/keycloak/keycloak:latest
+    container_name: keycloak
+    depends_on:
+      - db
+    ports:
+      - "9400:8080"
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_DB: postgres
+      KC_DB_URL_HOST: db
+      KC_DB_USERNAME: keycloak_user
+      KC_DB_PASSWORD: keycloak_pass
+      KC_DB_URL_DATABASE: keycloak_db  # Base de datos separada dentro del mismo PostgreSQL
+    command: ["start-dev"]
+    networks:
+      - snc-net
+
+networks:
+  snc-net:
+
+volumes:
+  postgres_data:
+
