@@ -51,11 +51,17 @@ class SSOServicesClass:
     @classmethod
     def logout_sso(cls,token):
         token_out = cls.get_sso_object_instance()
+        token_out.instance_openid_manager(
+            KeycloakOpenID
+        )
         token_out.logout(token)
 
     @classmethod
     def refresh_sso(cls,token):
         token_out = cls.get_sso_object_instance()
+        token_out.instance_openid_manager(
+            KeycloakOpenID
+        )
         return token_out.refresh_token(token)    
 
 
