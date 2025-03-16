@@ -27,7 +27,7 @@ class SSOServicesClass:
     @classmethod
     def get_sso_object_instance(cls):
         return SSOAuth(
-            url="http://keycloak:8080/",
+            url=os.environ.get("KEYCLOAK_URI",""),
             client_id=os.environ.get("KEYCLOAK_CLIENT",""),
             client_secret=os.environ.get("KEYCLOAK_SECRET",""),
             realm_name=os.environ.get("REALM","")
