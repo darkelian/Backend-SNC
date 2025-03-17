@@ -1,15 +1,26 @@
 package com.snc.backend.model.request;
+
 import java.time.LocalDate;
 
 import com.snc.backend.model.shared.general.ColombianTown;
 import com.snc.backend.model.shared.general.WorldCountry;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "req_user_beneficiary", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"identification_type_id", "identification_number"})
 })
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Applicant {
 
     @Id
@@ -79,170 +90,4 @@ public class Applicant {
 
     @Column(name = "is_verified", nullable = false)
     private Boolean isVerified = false;
-
-    // Getters & Setters
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getSecondName() {
-        return secondName;
-    }
-
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
-    }
-
-    public String getFirstLastName() {
-        return firstLastName;
-    }
-
-    public void setFirstLastName(String firstLastName) {
-        this.firstLastName = firstLastName;
-    }
-
-    public String getSecondLastName() {
-        return secondLastName;
-    }
-
-    public void setSecondLastName(String secondLastName) {
-        this.secondLastName = secondLastName;
-    }
-
-    public String getBusinessName() {
-        return businessName;
-    }
-
-    public void setBusinessName(String businessName) {
-        this.businessName = businessName;
-    }
-
-    public UserIdentificationType getIdentificationType() {
-        return identificationType;
-    }
-
-    public void setIdentificationType(UserIdentificationType identificationType) {
-        this.identificationType = identificationType;
-    }
-
-    public Boolean getIsNaturalPerson() {
-        return isNaturalPerson;
-    }
-
-    public void setIsNaturalPerson(Boolean isNaturalPerson) {
-        this.isNaturalPerson = isNaturalPerson;
-    }
-
-    public String getIdentificationNumber() {
-        return identificationNumber;
-    }
-
-    public void setIdentificationNumber(String identificationNumber) {
-        this.identificationNumber = identificationNumber;
-    }
-
-    public LocalDate getIdentificationDate() {
-        return identificationDate;
-    }
-
-    public void setIdentificationDate(LocalDate identificationDate) {
-        this.identificationDate = identificationDate;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getPhoneIndicative() {
-        return phoneIndicative;
-    }
-
-    public void setPhoneIndicative(String phoneIndicative) {
-        this.phoneIndicative = phoneIndicative;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public WorldCountry getCountry() {
-        return country;
-    }
-
-    public void setCountry(WorldCountry country) {
-        this.country = country;
-    }
-
-    public ColombianTown getColombianTown() {
-        return colombianTown;
-    }
-
-    public void setColombianTown(ColombianTown colombianTown) {
-        this.colombianTown = colombianTown;
-    }
-
-    public String getExternalState() {
-        return externalState;
-    }
-
-    public void setExternalState(String externalState) {
-        this.externalState = externalState;
-    }
-
-    public String getExternalTown() {
-        return externalTown;
-    }
-
-    public void setExternalTown(String externalTown) {
-        this.externalTown = externalTown;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Boolean getIsAcceptedEmailCommunication() {
-        return isAcceptedEmailCommunication;
-    }
-
-    public void setIsAcceptedEmailCommunication(Boolean isAcceptedEmailCommunication) {
-        this.isAcceptedEmailCommunication = isAcceptedEmailCommunication;
-    }
-
-    public ApplicantType getType() {
-        return type;
-    }
-
-    public void setType(ApplicantType type) {
-        this.type = type;
-    }
-
-    public Boolean getIsVerified() {
-        return isVerified;
-    }
-
-    public void setIsVerified(Boolean isVerified) {
-        this.isVerified = isVerified;
-    }
 }

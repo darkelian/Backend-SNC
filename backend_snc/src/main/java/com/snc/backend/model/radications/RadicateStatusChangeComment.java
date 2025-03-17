@@ -1,8 +1,15 @@
 package com.snc.backend.model.radications;
+
 import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Table(name = "tr_radicate_status_change_comment")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class RadicateStatusChangeComment {
 
     @Id
@@ -12,18 +19,4 @@ public class RadicateStatusChangeComment {
     @Lob
     @Column(name = "comment")
     private String comment;
-
-    // Getters y Setters
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
-    }
-    public String getComment() {
-        return comment;
-    }
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
 }

@@ -1,7 +1,15 @@
 package com.snc.backend.model.shared.common;
+
 import jakarta.persistence.*;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 @MappedSuperclass
+@Getter
+@Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+@SuperBuilder
 public abstract class CommonType {
 
     @Id
@@ -13,26 +21,6 @@ public abstract class CommonType {
 
     @Column(name = "text_code", length = 50, unique = true)
     private String textCode;
-
-    // Getters and Setters
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
-    }
-    public String getDispName() {
-        return dispName;
-    }
-    public void setDispName(String dispName) {
-        this.dispName = dispName;
-    }
-    public String getTextCode() {
-        return textCode;
-    }
-    public void setTextCode(String textCode) {
-        this.textCode = textCode;
-    }
 
     @Override
     public String toString() {

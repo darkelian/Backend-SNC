@@ -9,9 +9,19 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "tr_transact_type_document_required")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class TransactTypeDocumentRequired {
 
     @Id
@@ -31,41 +41,4 @@ public class TransactTypeDocumentRequired {
 
     @Column(name = "is_required", nullable = false)
     private Boolean isRequired;
-
-    // Getters y Setters
-    public Long getId() {
-        return id;
-    }
-
-    public TransactType getTransactType() {
-        return transactType;
-    }
-
-    public void setTransactType(TransactType transactType) {
-        this.transactType = transactType;
-    }
-
-    public String getTransactCondition() {
-        return transactCondition;
-    }
-
-    public void setTransactCondition(String transactCondition) {
-        this.transactCondition = transactCondition;
-    }
-
-    public DocumentType getDocumentType() {
-        return documentType;
-    }
-
-    public void setDocumentType(DocumentType documentType) {
-        this.documentType = documentType;
-    }
-
-    public Boolean getIsRequired() {
-        return isRequired;
-    }
-
-    public void setIsRequired(Boolean isRequired) {
-        this.isRequired = isRequired;
-    }
 }

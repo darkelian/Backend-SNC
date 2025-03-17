@@ -4,12 +4,17 @@ import com.snc.backend.model.request.Request;
 import com.snc.backend.model.shared.User;
 import com.snc.backend.model.shared.common.TransactType;
 import com.snc.backend.model.shared.general.ColombianTown;
-
 import jakarta.persistence.*;
+import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "ra_radicate")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Radicate {
 
     @Id
@@ -53,77 +58,8 @@ public class Radicate {
     @JoinColumn(name = "channel_create_type")
     private RadicateChannelCreateType channelCreateType;
 
-    // Método para asignar la fecha de creación
     @PrePersist
     public void prePersist() {
         this.radicateDate = LocalDateTime.now();
-    }
-
-    // Getters y Setters
-    public String getRadicatedNumber() {
-        return radicatedNumber;
-    }
-    public void setRadicatedNumber(String radicatedNumber) {
-        this.radicatedNumber = radicatedNumber;
-    }
-    public Request getRequest() {
-        return request;
-    }
-    public void setRequest(Request request) {
-        this.request = request;
-    }
-    public LocalDateTime getRadicateDate() {
-        return radicateDate;
-    }
-    public void setRadicateDate(LocalDateTime radicateDate) {
-        this.radicateDate = radicateDate;
-    }
-    public RadicateStatusType getStatus() {
-        return status;
-    }
-    public void setStatus(RadicateStatusType status) {
-        this.status = status;
-    }
-    public ColombianTown getTown() {
-        return town;
-    }
-    public void setTown(ColombianTown town) {
-        this.town = town;
-    }
-    public String getState() {
-        return state;
-    }
-    public void setState(String state) {
-        this.state = state;
-    }
-    public User getUserCreate() {
-        return userCreate;
-    }
-    public void setUserCreate(User userCreate) {
-        this.userCreate = userCreate;
-    }
-    public RadicateCreateUserType getTypeUserCreate() {
-        return typeUserCreate;
-    }
-    public void setTypeUserCreate(RadicateCreateUserType typeUserCreate) {
-        this.typeUserCreate = typeUserCreate;
-    }
-    public TransactType getInitialTransactType() {
-        return initialTransactType;
-    }
-    public void setInitialTransactType(TransactType initialTransactType) {
-        this.initialTransactType = initialTransactType;
-    }
-    public Boolean getRequiresVisit() {
-        return requiresVisit;
-    }
-    public void setRequiresVisit(Boolean requiresVisit) {
-        this.requiresVisit = requiresVisit;
-    }
-    public RadicateChannelCreateType getChannelCreateType() {
-        return channelCreateType;
-    }
-    public void setChannelCreateType(RadicateChannelCreateType channelCreateType) {
-        this.channelCreateType = channelCreateType;
     }
 }

@@ -9,9 +9,21 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 @Entity
 @Table(name = "tr_transact_type_acceptable_times")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class TransactTypeAcceptableTimes {
 
     @Id
@@ -27,33 +39,4 @@ public class TransactTypeAcceptableTimes {
 
     @Column(name = "maximum", nullable = false)
     private Short maximum = 0;
-
-    // Getters y Setters
-    public Long getId() {
-        return id;
-    }
-
-    public TransactType getTransactType() {
-        return transactType;
-    }
-
-    public void setTransactType(TransactType transactType) {
-        this.transactType = transactType;
-    }
-
-    public Short getMedium() {
-        return medium;
-    }
-
-    public void setMedium(Short medium) {
-        this.medium = medium;
-    }
-
-    public Short getMaximum() {
-        return maximum;
-    }
-
-    public void setMaximum(Short maximum) {
-        this.maximum = maximum;
-    }
 }

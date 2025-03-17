@@ -1,11 +1,17 @@
 package com.snc.backend.model.radications;
-import jakarta.persistence.*;
-import java.time.LocalDateTime;
 
+import jakarta.persistence.*;
+import lombok.*;
+import java.time.LocalDateTime;
 import com.snc.backend.model.shared.User;
 
 @Entity
 @Table(name = "ra_radicate_status_history")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class RadicateStatusHistory {
 
     @Id
@@ -31,47 +37,8 @@ public class RadicateStatusHistory {
     @JoinColumn(name = "comment")
     private RadicateStatusChangeComment comment;
 
-    // Método para asignar la fecha de creación
     @PrePersist
     public void prePersist() {
         this.date = LocalDateTime.now();
-    }
-
-    // Getters y Setters
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
-    }
-    public LocalDateTime getDate() {
-        return date;
-    }
-    public void setDate(LocalDateTime date) {
-        this.date = date;
-    }
-    public RadicateStatusType getStatus() {
-        return status;
-    }
-    public void setStatus(RadicateStatusType status) {
-        this.status = status;
-    }
-    public User getUserAccountableChangeStatus() {
-        return userAccountableChangeStatus;
-    }
-    public void setUserAccountableChangeStatus(User userAccountableChangeStatus) {
-        this.userAccountableChangeStatus = userAccountableChangeStatus;
-    }
-    public Radicate getRadicate() {
-        return radicate;
-    }
-    public void setRadicate(Radicate radicate) {
-        this.radicate = radicate;
-    }
-    public RadicateStatusChangeComment getComment() {
-        return comment;
-    }
-    public void setComment(RadicateStatusChangeComment comment) {
-        this.comment = comment;
     }
 }

@@ -8,9 +8,19 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "tr_party_transact")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class PartyTransact {
 
     @Id
@@ -26,33 +36,4 @@ public class PartyTransact {
 
     @Column(name = "is_principal", nullable = false)
     private Boolean isPrincipal;
-
-    // Getters y Setters
-    public Long getId() {
-        return id;
-    }
-
-    public Transact getTransact() {
-        return transact;
-    }
-
-    public void setTransact(Transact transact) {
-        this.transact = transact;
-    }
-
-    public UUID getParty() {
-        return party;
-    }
-
-    public void setParty(UUID party) {
-        this.party = party;
-    }
-
-    public Boolean getIsPrincipal() {
-        return isPrincipal;
-    }
-
-    public void setIsPrincipal(Boolean isPrincipal) {
-        this.isPrincipal = isPrincipal;
-    }
 }

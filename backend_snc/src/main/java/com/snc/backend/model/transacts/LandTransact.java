@@ -7,9 +7,21 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 @Entity
 @Table(name = "tr_land_transact")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class LandTransact {
 
     @Id
@@ -26,32 +38,4 @@ public class LandTransact {
     @Column(name = "is_principal", nullable = false)
     private Boolean isPrincipal;
 
-    // Getters y Setters
-    public Long getId() {
-        return id;
-    }
-
-    public Transact getTransact() {
-        return transact;
-    }
-
-    public void setTransact(Transact transact) {
-        this.transact = transact;
-    }
-
-    public String getLand() {
-        return land;
-    }
-
-    public void setLand(String land) {
-        this.land = land;
-    }
-
-    public Boolean getIsPrincipal() {
-        return isPrincipal;
-    }
-
-    public void setIsPrincipal(Boolean isPrincipal) {
-        this.isPrincipal = isPrincipal;
-    }
 }

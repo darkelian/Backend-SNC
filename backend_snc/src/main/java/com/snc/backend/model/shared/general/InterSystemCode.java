@@ -8,10 +8,20 @@ import org.hibernate.annotations.CreationTimestamp;
 import com.snc.backend.model.shared.User;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 
 @Entity
 @Table(name = "gen_inter_system_code")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class InterSystemCode {
 
     @Id
@@ -42,90 +52,8 @@ public class InterSystemCode {
 
     @ManyToOne
     @JoinColumn(name = "user_log_id")
-    private User userLog; // Asegúrate de tener definida la entidad User en tu proyecto
+    private User userLog;
 
     @Column(name = "date_log")
     private LocalDateTime dateLog;
-
-    // Getters & Setters
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSourceSystem() {
-        return sourceSystem;
-    }
-
-    public void setSourceSystem(String sourceSystem) {
-        this.sourceSystem = sourceSystem;
-    }
-
-    public String getTargetSystem() {
-        return targetSystem;
-    }
-
-    public void setTargetSystem(String targetSystem) {
-        this.targetSystem = targetSystem;
-    }
-
-    public String getOriginValue() {
-        return originValue;
-    }
-
-    public void setOriginValue(String originValue) {
-        this.originValue = originValue;
-    }
-
-    public String getTargetValue() {
-        return targetValue;
-    }
-
-    public void setTargetValue(String targetValue) {
-        this.targetValue = targetValue;
-    }
-
-    public LocalDateTime getDateFrom() {
-        return dateFrom;
-    }
-
-    public void setDateFrom(LocalDateTime dateFrom) {
-        this.dateFrom = dateFrom;
-    }
-
-    public LocalDateTime getDateTo() {
-        return dateTo;
-    }
-
-    public void setDateTo(LocalDateTime dateTo) {
-        this.dateTo = dateTo;
-    }
-
-    public User getUserLog() {
-        return userLog;
-    }
-
-    public void setUserLog(User userLog) {
-        this.userLog = userLog;
-    }
-
-    public LocalDateTime getDateLog() {
-        return dateLog;
-    }
-
-    public void setDateLog(LocalDateTime dateLog) {
-        this.dateLog = dateLog;
-    }
 }

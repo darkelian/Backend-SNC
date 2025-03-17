@@ -12,9 +12,19 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "tr_document")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Document {
 
     @Id
@@ -48,69 +58,4 @@ public class Document {
     @CreationTimestamp
     @Column(name = "date", nullable = false, updatable = false)
     private LocalDateTime date;
-
-    // Getters y Setters
-    public Long getId() {
-        return id;
-    }
-
-    public DocumentType getType() {
-        return type;
-    }
-
-    public void setType(DocumentType type) {
-        this.type = type;
-    }
-
-    public String getFilename() {
-        return filename;
-    }
-
-    public void setFilename(String filename) {
-        this.filename = filename;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public Integer getFilesize() {
-        return filesize;
-    }
-
-    public void setFilesize(Integer filesize) {
-        this.filesize = filesize;
-    }
-
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
-
-    public DocumentOriginType getOriginType() {
-        return originType;
-    }
-
-    public void setOriginType(DocumentOriginType originType) {
-        this.originType = originType;
-    }
-
-    public User getUserCreate() {
-        return userCreate;
-    }
-
-    public void setUserCreate(User userCreate) {
-        this.userCreate = userCreate;
-    }
-
-    public LocalDateTime getDate() {
-        return date;
-    }
 }
