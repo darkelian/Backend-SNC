@@ -1,4 +1,4 @@
-package com.snc.backend.config;
+package com.snc.backend.infrastructure.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
