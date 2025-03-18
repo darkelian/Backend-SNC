@@ -20,6 +20,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 
 @Configuration
 @EnableWebSecurity
@@ -27,19 +29,24 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http
-                .csrf(csrf -> csrf.disable())
-                .cors(cors -> {
-                })
-                .authorizeHttpRequests(authRequest -> authRequest
-                        .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
-                        .anyRequest().authenticated())
-                .sessionManagement(
-                        sessionManager -> sessionManager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authenticationProvider(authenticationProvider()) // Agregar el AuthenticationProvider
-                .build();
+        http.csrf(csrf -> csrf.disable()) 
+            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/auth/login").permitAll() 
+                .requestMatchers("/api/protected").authenticated()
+                .anyRequest().permitAll()
+            )
+            .oauth2ResourceServer(oauth2 -> oauth2
+                .jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter()))
+            );
+
+            return http.build();
     }
 
+    
+    private JwtAuthenticationConverter jwtAuthenticationConverter() {
+        return new JwtAuthenticationConverter();
+    }
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();

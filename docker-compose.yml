@@ -1,0 +1,23 @@
+version: "3.8"
+services:
+  
+  snc_java:
+    build: 
+      context: .
+      dockerfile: ./Dockerfile
+        
+    container_name: snc_java       
+    volumes:
+      - ./backend_snc:/app
+    ports:      
+      - "9800:8080"      
+  
+    networks:
+      - snc-net
+      
+
+
+
+networks:
+  snc-net:
+    external: true
