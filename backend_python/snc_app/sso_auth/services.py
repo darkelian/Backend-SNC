@@ -45,7 +45,10 @@ class SSOServicesClass:
             username=validate_data.validated_data.get("user"),
             password=validate_data.validated_data.get("password")
         )
-        return token_data
+        res = validate_data.get_response_sso(
+            response= token_data
+        )
+        return res
         
 
     @classmethod
@@ -64,4 +67,4 @@ class SSOServicesClass:
         )
         return token_out.refresh_token(token)    
 
-
+    

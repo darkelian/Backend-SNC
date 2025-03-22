@@ -69,7 +69,7 @@ class SSORefreshView(APIView):
             token = SSOServicesClass.refresh_sso(
                 request.data.get("refresh_token","")
             ) 
-
+            
            
             return Response(token)
         except (ValueError, AttributeError) as e:
